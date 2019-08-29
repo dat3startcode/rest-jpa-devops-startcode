@@ -12,8 +12,10 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         
         <!-- TODO: Add the URL to your own tomcat server. Used to deploy your WAR-file -->
+
         <remote.server>http://157.230.21.103/manager/text</remote.server>
         
     </properties>

@@ -2,6 +2,7 @@
 ## Make sure to rename the database name in the CREATE DATABASE script below to the SAME name as used for your local tests
 ---
 
+
 dist: bionic
 
 language: java
@@ -24,8 +25,6 @@ before_script:
 #- PW="ax2"
 #- USER_NAME="dev"
 
-#- sudo apt-get clean
-#- sudo rm -r /var/lib/apt/lists/*
 
 - sudo apt-get update
 - sudo apt-get install -y debconf-utils
@@ -38,8 +37,7 @@ before_script:
 - sudo -E apt-get -y install mysql-server
 
 - sudo mysql -u root -e "CREATE User 'dev'@'localhost' IDENTIFIED BY 'ax2'; GRANT ALL PRIVILEGES ON *.* TO 'dev'@'localhost' WITH GRANT OPTION;"
-# - sudo mysql -u root -e "CREATE DATABASE startcodev2-test;"
-- sudo mysql -u dev -pax2 -e "CREATE DATABASE startcode_test;"
+- sudo mysql -u root -e "CREATE DATABASE startcode;"
 
 - echo "Change  port to 3307, to mirror the local development setup"
 - sudo systemctl stop mysql

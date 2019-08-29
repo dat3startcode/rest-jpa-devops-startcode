@@ -4,7 +4,8 @@ import entities.RenameMe;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import entityUtils.EMF_Creator;
+
 
 /**
  *
@@ -32,9 +33,9 @@ public class FacadeExample {
         return instance;
     }
 
-    private EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
+    // private EntityManager getEntityManager() {
+    //     return emf.createEntityManager();
+    // }
     
     //TODO Remove/Change this before use
     public long getRenameMeCount(){
@@ -48,4 +49,9 @@ public class FacadeExample {
         
     }
 
+    public static void main(String[] args) {
+        FacadeExample fe = getFacadeExample(EMF_Creator.getEMF(EMF_Creator.Strategy.DROP_AND_CREATE));
+        long count = fe.getRenameMeCount();
+        System.out.println("count: "+count);
+    }
 }
