@@ -114,15 +114,20 @@ public class EMF_Creator {
         }
         
         //A deployment server MUST set the following values which will override the defaults
-        boolean isDeployed = (System.getenv("DEPLOYED") != null);
+        boolean isDeployed = (System.getenv("DEPLOYED") != null);      
         if (isDeployed) {
-            user = System.getenv("USER");
-            pw = System.getenv("PW");
-            connection_str = System.getenv("CONNECTION_STR");
+            String remoteUserKey = Settings.getPropertyValue("remote.db.user.key");
+            String remotePwKey = Settings.getPropertyValue("remote.db.password.key");
+            String remoteConnectionKey = Settings.getPropertyValue("remote.db.connection.key");
+            user = System.getenv(remoteUserKey);
+            pw = System.getenv(remotePwKey);
+            connection_str = System.getenv(remoteConnectionKey);
         }
+
         /*
-        On your server in /opt/tomcat/bin/setenv.sh   add the following WITH YOUR OWN VALUES
-        
+        On your server in /opt/tomcat/bin/setenv.sh   add the following WITH YOUR OWN VALUES and your own
+        keys, defined in config.properties
+
         export DEPLOYED="DEV_ON_DIGITAL_OCEAN"
         export USER="dev"
         export PW="ax2"
