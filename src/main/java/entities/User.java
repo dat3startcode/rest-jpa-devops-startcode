@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "users")
@@ -55,8 +56,10 @@ public class User implements Serializable {
 
   public User(String userName, String userPass) {
     this.userName = userName;
- this.userPass = userPass;
+
+    this.userPass = userPass;
   }
+
 
   public String getUserName() {
     return userName;

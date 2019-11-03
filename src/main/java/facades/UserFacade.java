@@ -33,6 +33,7 @@ public class UserFacade {
         User user;
         try {
             user = em.find(User.class, username);
+            System.out.println(user.getUserName()+" "+user.getUserPass());
             if (user == null || !user.verifyPassword(password)) {
                 throw new AuthenticationException("Invalid user name or password");
             }

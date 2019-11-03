@@ -2,23 +2,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dat.sem3</groupId>
-    <artifactId>rest-jpa-devops-starter</artifactId>
-    <version>1.0.1</version>
+    <groupId>dat.sem3.security</groupId>
+    <artifactId>security</artifactId>
+    <version>1</version>
     <packaging>war</packaging>
 
-    <name>jpa-rest-devops-starter</name>
+    <name>security</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
         <!-- TODO: Add the URL to your own tomcat server. Used to deploy your WAR-file -->
-        <remote.server>http://157.230.21.103/manager/text</remote.server>
+        <remote.server>http://localhost:8080/manager/text</remote.server>
         
     </properties>
     
     <dependencies>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.core</artifactId>
@@ -140,7 +145,6 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    
                     <server>TomcatServer</server>
                     <url>${remote.server}</url>
                     <username>${remote.user}</username>

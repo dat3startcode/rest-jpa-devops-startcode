@@ -17,17 +17,19 @@ public class SetupTestUsers {
     // IMPORTAAAAAAAAAANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // This breaks one of the MOST fundamental security rules in that it ships with default users and passwords
     // CHANGE the three passwords below, before you uncomment and execute the code below
-    
-    //throw new UnsupportedOperationException("REMOVE THIS LINE, WHEN YOU HAVE READ WARNING");
-    
+
+    User user = new User("user", "test");
+    User admin = new User("admin", "test");
+    User both = new User("user_admin", "test");
+
+    if(admin.getUserPass().equals("test")||user.getUserPass().equals("test")||both.getUserPass().equals("test"))
+      throw new UnsupportedOperationException("You have not changed the passwords");
+
     em.getTransaction().begin();
     Role userRole = new Role("user");
     Role adminRole = new Role("admin");
-    User user = new User("user", "test");
     user.addRole(userRole);
-    User admin = new User("admin", "test");
     admin.addRole(adminRole);
-    User both = new User("user_admin", "test");
     both.addRole(userRole);
     both.addRole(adminRole);
     em.persist(userRole);
