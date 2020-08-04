@@ -10,7 +10,7 @@
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.canonicalmodel.subpackage" value="xx345y657"/>
             <!-- In PRODUCTION these values will be overriden by entityUtils.EMF_Creator -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/startcode"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/startcode"/>
             <property name="javax.persistence.jdbc.user" value="dev"/>
             <!--      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
             <property name="javax.persistence.jdbc.password" value="ax2"/>
@@ -29,7 +29,7 @@
       
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="eclipselink.canonicalmodel.subpackage" value="ghy636765"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/startcode_test"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/startcode_test"/>
             <property name="javax.persistence.jdbc.user" value="dev"/>
             <!--      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
             <property name="javax.persistence.jdbc.password" value="ax2"/>

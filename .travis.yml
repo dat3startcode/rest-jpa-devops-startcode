@@ -12,6 +12,7 @@ cache:
 
 script:
   - mvn test
+  - mvn verify sonar:sonar
   - mvn -Dremote.user=$REMOTE_USER -Dremote.password=$REMOTE_PW tomcat7:deploy
 
 services:
@@ -42,9 +43,9 @@ before_script:
 # - sudo mysql -u root -e "CREATE DATABASE startcodev2-test;"
 - sudo mysql -u dev -pax2 -e "CREATE DATABASE startcode_test;"
 
-- echo "Change  port to 3307, to mirror the local development setup"
+- echo "Change  port to 3306, to mirror the local development setup"
 - sudo systemctl stop mysql
-- sudo sh -c 'echo "port=3307" >> /etc/mysql/mysql.conf.d/mysqld.cnf'
+- sudo sh -c 'echo "port=3306" >> /etc/mysql/mysql.conf.d/mysqld.cnf'
 - echo "Restarting MySQL..."
 - sudo systemctl start mysql
 - mysql --version

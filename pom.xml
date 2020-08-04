@@ -16,7 +16,9 @@
         <!-- TODO: Add the URL to your own tomcat server. Used to deploy your WAR-file -->
         <!-- Important: If your server uses https (via NGINX) use your domain name and https below: -->
         <remote.server>http://157.230.21.103/manager/text</remote.server>
-        
+        <sonar.projectKey>dat3startcode_rest-jpa-devops-startcode</sonar.projectKey>
+        <sonar.organization>dat3startcode</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     
     <dependencies>
@@ -120,14 +122,14 @@
             <version>4.0.0</version>
             <scope>test</scope>
         </dependency>
-
+        
     </dependencies>
 
     <build>
        
         <plugins>
-             <!-- Plugin used to deploy to remote server -->
-             <plugin>
+            <!-- Plugin used to deploy to remote server -->
+            <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
