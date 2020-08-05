@@ -64,5 +64,68 @@
  - On *travis-ci.org* verify that your commit has been detected and a "build cycle" has started
  - If everything was fine (might take a few minutes) verify that Travis has deployed your new war file to your droplet
 
+
+### ADD sonarcloud to get code review
+[Read this article to setup sonarcloud on travis](https://docs.travis-ci.com/user/sonarcloud/)
+Steps to cover:
+1. login to sonarcloud.io with github account
+2. create a sonarcloud authentication token: https://sonarcloud.io/account/security
+3. add the token to travis env var: SONAR_TOKEN
+4. get key for github organisation to monitor : https://sonarcloud.io/account/organizations
+5. create [sonar-project.properties](http://redirect.sonarsource.com/doc/install-configure-scanner.html) file in project root
+6. add `- mvn verify sonar:sonar` to the script section of .travis.yml
+7. add to pom.xml property section: 
+```xml
+<sonar.projectKey>organisationname_reponame</sonar.projectKey>
+<sonar.organization>github_organisation_name_here</sonar.organization>
+<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+```
+8. add to pom.xml 
+
+### Add Jacoco to get test coverage report in sonarcloud
+[Read this article to setup jacoco on the pom.xml](https://medium.com/backend-habit/generate-codecoverage-report-with-jacoco-and-sonarqube-ed15c4045885)  
+
+1. add to property section of pom.xml: 
+```xml
+<jacoco.version>0.8.3</jacoco.version>
+<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+<sonar.language>java</sonar.language>
+```
+2. add to plugins section of pom.xml
+```xml
+<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>${jacoco.version}</version>
+    <configuration>
+        <skip>${maven.test.skip}</skip>
+        <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+        <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+        <output>file</output>
+        <append>true</append>
+        <excludes>
+            <exclude>*MethodAccess</exclude>
+        </excludes>
+    </configuration>
+    <executions>
+        <execution>
+            <id>jacoco-initialize</id>
+            <goals>
+                <goal>prepare-agent</goal>
+            </goals>
+            <phase>test-compile</phase>
+        </execution>
+        <execution>
+            <id>jacoco-site</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>report</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
 [Back to README](README.md)
 
